@@ -331,10 +331,30 @@
   .scale-legend{display:flex; justify-content:center; gap:22px; margin-top:8px; flex-wrap:wrap; font-family:var(--font-mono); font-size:.78rem; text-transform:uppercase; letter-spacing:.04em;}
   .scale-legend span{display:flex; align-items:center; gap:6px; color:var(--ink-soft);}
   .scale-legend i{width:10px; height:10px; border-radius:50%; display:inline-block;}
+
+  /* ---- explanatory diagrams ---- */
+  figure.diagram{
+    margin:28px 0 6px; background:var(--card); border:1px solid var(--card-border); padding:20px 16px 16px;
+  }
+  figure.diagram svg{width:100%; max-width:420px; height:auto; display:block; margin:0 auto; color:var(--ink);}
+  figure.diagram svg use{fill:none; stroke:currentColor; stroke-width:1.6; stroke-linecap:round; stroke-linejoin:round;}
+  figure.diagram figcaption{
+    text-align:center; margin-top:12px; font-size:.85rem; color:var(--ink-soft); max-width:52ch; margin-left:auto; margin-right:auto;
+  }
+  .diagram-label{font-family:var(--font-mono); font-size:10.5px; letter-spacing:.03em;}
+
+  /* ---- hero illustration ---- */
+  .hero-flex{display:flex; align-items:center; gap:28px; flex-wrap:wrap;}
+  .hero-flex .hero-text{flex:1; min-width:260px;}
+  .hero-illustration{width:180px; flex:none; color:var(--ink); opacity:.92;}
+  @media (max-width:640px){ .hero-illustration{display:none;} }
 </style>
 
 <svg style="position:absolute;width:0;height:0;overflow:hidden" aria-hidden="true">
   <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0,0L10,5L0,10z" fill="currentColor"/>
+    </marker>
     <symbol id="i-people" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3"/><circle cx="17" cy="9" r="2.3"/><path d="M3,20c0-3.5,2.7-6,6-6s6,2.5,6,6"/><path d="M14.5,15.3c2,0.3,3.7,2.1,3.7,4.7"/></symbol>
     <symbol id="i-book" viewBox="0 0 24 24"><path d="M3,5c2,0,5,0.5,6,2v13c-1-1.5-4-2-6-2z"/><path d="M21,5c-2,0-5,0.5-6,2v13c1-1.5,4-2,6-2z"/></symbol>
     <symbol id="i-building" viewBox="0 0 24 24"><path d="M4,9l8-5,8,5"/><rect x="4" y="9" width="16" height="12"/><line x1="9" y1="21" x2="9" y2="13"/><line x1="15" y1="21" x2="15" y2="13"/></symbol>
@@ -373,9 +393,30 @@
 <div class="sheet">
 
   <header class="hero">
-    <div class="folio-no">Libro Mayor &nbsp;·&nbsp; Folio N.° 001 &nbsp;·&nbsp; Tarea 2</div>
-    <h1>Fundamentos del <em>Debe</em> y el <em>Haber</em></h1>
-    <p class="subtitle">Un recorrido conceptual por la terminología esencial de Contabilidad y Costos: qué es cada idea, para qué sirve y cómo se relaciona con las demás — sin fórmulas ni cifras, solo el significado.</p>
+    <div class="hero-flex">
+      <div class="hero-text">
+        <div class="folio-no">Libro Mayor &nbsp;·&nbsp; Folio N.° 001 &nbsp;·&nbsp; Tarea 2</div>
+        <h1>Fundamentos del <em>Debe</em> y el <em>Haber</em></h1>
+        <p class="subtitle">Un recorrido conceptual por la terminología esencial de Contabilidad y Costos: qué es cada idea, para qué sirve y cómo se relaciona con las demás — sin fórmulas ni cifras, solo el significado.</p>
+      </div>
+      <svg class="hero-illustration" viewBox="0 0 240 170" role="img" aria-label="Ilustración de un libro contable abierto, con una pluma escribiendo sobre sus páginas">
+        <path d="M120,22 C92,10 44,10 22,22 V138 C44,126 92,126 120,138 Z" fill="var(--card)" stroke="currentColor" stroke-width="2"/>
+        <path d="M120,22 C148,10 196,10 218,22 V138 C196,126 148,126 120,138 Z" fill="var(--card)" stroke="currentColor" stroke-width="2"/>
+        <line x1="120" y1="22" x2="120" y2="138" stroke="currentColor" stroke-width="2"/>
+        <line x1="36" y1="44" x2="104" y2="40" stroke="var(--ink-soft)" stroke-width="1.3"/>
+        <line x1="36" y1="58" x2="104" y2="55" stroke="var(--ink-soft)" stroke-width="1.3"/>
+        <line x1="36" y1="72" x2="104" y2="70" stroke="var(--debit)" stroke-width="1.6"/>
+        <line x1="36" y1="86" x2="104" y2="85" stroke="var(--ink-soft)" stroke-width="1.3"/>
+        <line x1="36" y1="100" x2="104" y2="100" stroke="var(--ink-soft)" stroke-width="1.3"/>
+        <line x1="136" y1="40" x2="204" y2="44" stroke="var(--ink-soft)" stroke-width="1.3"/>
+        <line x1="136" y1="55" x2="204" y2="58" stroke="var(--ink-soft)" stroke-width="1.3"/>
+        <line x1="136" y1="70" x2="204" y2="72" stroke="var(--credit)" stroke-width="1.6"/>
+        <line x1="136" y1="85" x2="204" y2="86" stroke="var(--ink-soft)" stroke-width="1.3"/>
+        <line x1="136" y1="100" x2="204" y2="100" stroke="var(--ink-soft)" stroke-width="1.3"/>
+        <line x1="152" y1="4" x2="196" y2="42" stroke="var(--brass)" stroke-width="4.5" stroke-linecap="round"/>
+        <path d="M191,38l10,9-6,5-9,-10z" fill="var(--brass)"/>
+      </svg>
+    </div>
     <div class="ledger-plate">
       <div><span class="k">Curso</span><span class="v mono">212018 · Contabilidad y Costos</span></div>
       <div><span class="k">Actividad</span><span class="v mono">Tarea 2</span></div>
@@ -423,6 +464,55 @@
         <h3>La cuenta y sus partes</h3>
         <p>Toda cuenta tiene un nombre, dos lados —Debe y Haber— y un saldo. Es la unidad mínima donde se acumulan los aumentos y disminuciones de un mismo concepto.</p>
       </div>
+    </div>
+
+    <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:16px; margin-top:28px;">
+      <figure class="diagram">
+        <svg viewBox="0 0 300 145" role="img" aria-label="Varios socios aportan capital o trabajo y forman una sola sociedad">
+          <use href="#i-people" x="14" y="8" width="34" height="34"/>
+          <use href="#i-people" x="133" y="0" width="34" height="34"/>
+          <use href="#i-people" x="252" y="8" width="34" height="34"/>
+          <line x1="38" y1="48" x2="130" y2="92" stroke="currentColor" stroke-width="1.5" marker-end="url(#arrow)"/>
+          <line x1="150" y1="38" x2="150" y2="92" stroke="currentColor" stroke-width="1.5" marker-end="url(#arrow)"/>
+          <line x1="262" y1="48" x2="170" y2="92" stroke="currentColor" stroke-width="1.5" marker-end="url(#arrow)"/>
+          <use href="#i-building" x="130" y="96" width="40" height="40" style="color:var(--brass)"/>
+          <text x="150" y="144" text-anchor="middle" class="diagram-label" fill="var(--ink-soft)">UNA SOLA SOCIEDAD</text>
+        </svg>
+        <figcaption><b>Sociedades:</b> varios socios aportan capital o trabajo, pero para la ley y la contabilidad nace un solo ente, distinto de cada uno de ellos.</figcaption>
+      </figure>
+
+      <figure class="diagram">
+        <svg viewBox="0 0 300 145" role="img" aria-label="Las cuentas reales continúan de un periodo a otro; las cuentas nominales se cierran y reinician cada periodo">
+          <rect x="20" y="24" width="260" height="20" fill="var(--debit)" opacity=".22" stroke="var(--debit)" stroke-width="1.5"/>
+          <line x1="106" y1="20" x2="106" y2="48" stroke="var(--debit)" stroke-width="1" stroke-dasharray="2 2"/>
+          <line x1="193" y1="20" x2="193" y2="48" stroke="var(--debit)" stroke-width="1" stroke-dasharray="2 2"/>
+          <text x="150" y="16" text-anchor="middle" class="diagram-label" fill="var(--debit)">CUENTAS REALES — CONTINÚAN</text>
+          <rect x="20" y="88" width="72" height="20" fill="var(--credit)" opacity=".22" stroke="var(--credit)" stroke-width="1.5"/>
+          <rect x="114" y="88" width="72" height="20" fill="var(--credit)" opacity=".22" stroke="var(--credit)" stroke-width="1.5"/>
+          <rect x="208" y="88" width="72" height="20" fill="var(--credit)" opacity=".22" stroke="var(--credit)" stroke-width="1.5"/>
+          <path d="M96,98a10,10 0 0,1 14,0" fill="none" stroke="var(--credit)" stroke-width="1.4" marker-end="url(#arrow)"/>
+          <path d="M190,98a10,10 0 0,1 14,0" fill="none" stroke="var(--credit)" stroke-width="1.4" marker-end="url(#arrow)"/>
+          <text x="150" y="80" text-anchor="middle" class="diagram-label" fill="var(--credit)">CUENTAS NOMINALES — SE CIERRAN</text>
+          <text x="56" y="102" text-anchor="middle" font-size="9" fill="var(--ink-soft)">Periodo 1</text>
+          <text x="150" y="102" text-anchor="middle" font-size="9" fill="var(--ink-soft)">Periodo 2</text>
+          <text x="244" y="102" text-anchor="middle" font-size="9" fill="var(--ink-soft)">Periodo 3</text>
+        </svg>
+        <figcaption><b>Reales vs. nominales:</b> el saldo de una cuenta real pasa intacto al siguiente periodo; el de una nominal se cierra y arranca en cero.</figcaption>
+      </figure>
+
+      <figure class="diagram">
+        <svg viewBox="0 0 300 155" role="img" aria-label="El PUC organiza cada cuenta en cuatro niveles cada vez más específicos: clase, grupo, cuenta y subcuenta">
+          <rect x="20" y="10" width="260" height="26" rx="3" fill="none" stroke="currentColor" stroke-width="1.6"/>
+          <rect x="50" y="46" width="200" height="26" rx="3" fill="none" stroke="currentColor" stroke-width="1.6"/>
+          <rect x="80" y="82" width="140" height="26" rx="3" fill="none" stroke="currentColor" stroke-width="1.6"/>
+          <rect x="110" y="118" width="80" height="26" rx="3" fill="none" stroke="var(--brass)" stroke-width="1.8"/>
+          <text x="30" y="27" font-size="11" class="diagram-label" fill="var(--ink-soft)">CLASE</text>
+          <text x="60" y="63" font-size="11" class="diagram-label" fill="var(--ink-soft)">GRUPO</text>
+          <text x="90" y="99" font-size="11" class="diagram-label" fill="var(--ink-soft)">CUENTA</text>
+          <text x="150" y="135" text-anchor="middle" font-size="11" class="diagram-label" fill="var(--brass)">SUBCUENTA</text>
+        </svg>
+        <figcaption><b>Estructura del PUC:</b> cada nivel vive dentro del anterior y lo precisa más — de lo más general (clase) a lo más específico (subcuenta).</figcaption>
+      </figure>
     </div>
 
     <div class="taccount-wrap">
@@ -525,7 +615,26 @@
   <section id="empresa">
     <div class="eyebrow"><span class="dot"></span>02 — La empresa como ente económico</div>
     <h2>Cinco elementos, un solo reporte</h2>
-    <p class="lede">Para efectos contables la empresa se estudia como un ente separado de sus dueños: no importa si el dinero salió del bolsillo del socio, para la contabilidad es la empresa quien tiene, debe y gana. Sus estados financieros se construyen a partir de cinco elementos:</p>
+    <p class="lede">Para efectos contables la empresa se estudia como un ente separado de sus dueños: no importa si el dinero salió del bolsillo del socio, para la contabilidad es la empresa quien tiene, debe y gana.</p>
+
+    <figure class="diagram">
+      <svg viewBox="0 0 360 150" role="img" aria-label="Los dueños y la empresa son entidades separadas; entre ellos solo cruzan los aportes y las utilidades">
+        <rect x="12" y="14" width="150" height="118" rx="4" fill="none" stroke="currentColor" stroke-width="1.6"/>
+        <rect x="198" y="14" width="150" height="118" rx="4" fill="none" stroke="currentColor" stroke-width="1.6"/>
+        <line x1="180" y1="6" x2="180" y2="140" stroke="var(--ink-soft)" stroke-width="1.4" stroke-dasharray="4 3"/>
+        <use href="#i-owner" x="70" y="30" width="34" height="34"/>
+        <use href="#i-building" x="252" y="30" width="34" height="34" style="color:var(--brass)"/>
+        <text x="87" y="86" text-anchor="middle" class="diagram-label" fill="var(--ink-soft)">DUEÑOS / SOCIOS</text>
+        <text x="273" y="86" text-anchor="middle" class="diagram-label" fill="var(--ink-soft)">EMPRESA (ente aparte)</text>
+        <line x1="162" y1="45" x2="196" y2="45" stroke="var(--debit)" stroke-width="1.6" marker-end="url(#arrow)"/>
+        <text x="180" y="38" text-anchor="middle" font-size="10" fill="var(--debit)">Aportes</text>
+        <line x1="196" y1="100" x2="162" y2="100" stroke="var(--credit)" stroke-width="1.6" marker-end="url(#arrow)"/>
+        <text x="180" y="115" text-anchor="middle" font-size="10" fill="var(--credit)">Utilidades</text>
+      </svg>
+      <figcaption>La frontera contable: entre dueños y empresa solo cruzan los aportes (entran) y las utilidades (salen) — todo lo demás es del ente, no de las personas.</figcaption>
+    </figure>
+
+    <p class="lede" style="margin-top:22px;">Sus estados financieros se construyen a partir de cinco elementos:</p>
     <div class="eeff-strip">
       <div class="item a"><div class="icon-badge"><svg class="icon"><use href="#i-building"/></svg></div><span class="lbl-big">Activo</span><span class="lbl">Lo que la empresa posee</span></div>
       <div class="item p"><div class="icon-badge"><svg class="icon"><use href="#i-clock"/></svg></div><span class="lbl-big">Pasivo</span><span class="lbl">Lo que la empresa debe</span></div>
@@ -554,7 +663,25 @@
       <div class="c"><div class="icon-badge"><svg class="icon"><use href="#i-cap"/></svg></div><h5>Aprendizaje</h5><p>Formación práctica bajo la Ley 789 de 2002.</p></div>
     </div>
 
-    <p class="lede" style="margin-top:24px;">Los <b>datos generales de la nómina</b> —quién es el trabajador, qué cargo tiene, cuánto gana y a qué EPS/AFP está afiliado— son la base de la liquidación mensual, que siempre distingue cuatro ideas:</p>
+    <p class="lede" style="margin-top:24px;">Los <b>datos generales de la nómina</b> —quién es el trabajador, qué cargo tiene, cuánto gana y a qué EPS/AFP está afiliado— son la base de la liquidación mensual, que mueve dinero en tres direcciones:</p>
+
+    <figure class="diagram">
+      <svg viewBox="0 0 360 150" role="img" aria-label="La empresa paga devengados al trabajador, le descuenta deducciones, y aparte gira aportes y parafiscales al Estado">
+        <use href="#i-owner" x="10" y="50" width="36" height="36"/>
+        <text x="28" y="102" text-anchor="middle" class="diagram-label" fill="var(--ink-soft)">TRABAJADOR</text>
+        <use href="#i-building" x="162" y="50" width="36" height="36" style="color:var(--brass)"/>
+        <text x="180" y="102" text-anchor="middle" class="diagram-label" fill="var(--ink-soft)">EMPRESA</text>
+        <use href="#i-shield" x="314" y="50" width="36" height="36"/>
+        <text x="332" y="102" text-anchor="middle" class="diagram-label" fill="var(--ink-soft)">ESTADO</text>
+        <line x1="52" y1="58" x2="158" y2="58" stroke="var(--debit)" stroke-width="1.6" marker-end="url(#arrow)"/>
+        <text x="105" y="50" text-anchor="middle" font-size="10" fill="var(--debit)">Devengados</text>
+        <line x1="158" y1="78" x2="52" y2="78" stroke="var(--credit)" stroke-width="1.6" marker-end="url(#arrow)"/>
+        <text x="105" y="94" text-anchor="middle" font-size="10" fill="var(--credit)">Deducciones</text>
+        <line x1="204" y1="68" x2="310" y2="68" stroke="var(--brass)" stroke-width="1.6" marker-end="url(#arrow)"/>
+        <text x="257" y="60" text-anchor="middle" font-size="10" fill="var(--brass)">Aportes y parafiscales</text>
+      </svg>
+      <figcaption>La empresa paga los devengados, recupera parte como deducciones, y además gira aportes y parafiscales al Estado por su propia cuenta (apropiaciones).</figcaption>
+    </figure>
 
     <dl class="glossary" style="margin-top:22px;">
       <div class="row"><dt><svg class="icon-sm"><use href="#i-plus"/></svg>Devengados</dt><dd>Todo lo que el trabajador tiene derecho a recibir por su labor: salario, auxilio de transporte, horas extra y demás pagos a su favor.</dd></div>
