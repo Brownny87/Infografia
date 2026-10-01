@@ -1,0 +1,186 @@
+<title>Clasificación de los Estados Financieros</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,ital@9..144,400..700,0..1&family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600&family=IBM+Plex+Mono:wght@400;500;600&display=swap');
+
+  :root{
+    --paper:#EAE6D3;
+    --paper-line:#C7C9AC;
+    --margin-rule:#B23A3A;
+    --ink:#1E2A28;
+    --ink-soft:#4E594F;
+    --debit:#1D4E63;
+    --credit:#8A2E2E;
+    --brass:#8C6B24;
+    --card:#F6F3E4;
+    --card-border:#D8D3B9;
+    --shadow:rgba(30,42,40,.16);
+    --font-display:'Fraunces',Georgia,'Times New Roman',serif;
+    --font-body:'Source Serif 4',Georgia,serif;
+    --font-mono:'IBM Plex Mono',ui-monospace,'SFMono-Regular',Menlo,Consolas,monospace;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --paper:#131F1A; --paper-line:#243128; --margin-rule:#B4605C;
+      --ink:#E9E4D0; --ink-soft:#A7AF9F; --debit:#7FC3D9; --credit:#E29C93;
+      --brass:#D8B968; --card:#1A2620; --card-border:#2E3C32; --shadow:rgba(0,0,0,.55);
+    }
+  }
+  :root[data-theme="dark"]{
+    --paper:#131F1A; --paper-line:#243128; --margin-rule:#B4605C;
+    --ink:#E9E4D0; --ink-soft:#A7AF9F; --debit:#7FC3D9; --credit:#E29C93;
+    --brass:#D8B968; --card:#1A2620; --card-border:#2E3C32; --shadow:rgba(0,0,0,.55);
+  }
+
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background:
+      repeating-linear-gradient(var(--paper) 0px, var(--paper) 30px, var(--paper-line) 30px, var(--paper-line) 31px),
+      var(--paper);
+    color:var(--ink);
+    font-family:var(--font-body);
+    font-size:16.5px;
+    line-height:1.5;
+  }
+  h1,h2,h3{font-family:var(--font-display);font-weight:600;text-wrap:balance;color:var(--ink);margin:0;}
+  ::selection{background:var(--brass);color:var(--paper);}
+
+  .sheet{ max-width:920px; margin:0 auto; position:relative; padding:0 28px 70px 56px; }
+  .sheet::before{ content:""; position:absolute; top:0; bottom:0; left:34px; width:1.5px; background:var(--margin-rule); opacity:.55; }
+
+  header.hero{ padding:40px 0 26px; }
+  .folio-no{ font-family:var(--font-mono); font-size:12px; color:var(--ink-soft); letter-spacing:.08em; text-transform:uppercase; margin-bottom:10px; }
+  header.hero h1{ font-size:clamp(1.9rem, 4.6vw, 2.8rem); line-height:1.08; letter-spacing:-.01em; max-width:18ch; }
+  header.hero h1 em{ font-style:italic; color:var(--credit); }
+  .subtitle{ margin-top:14px; max-width:60ch; color:var(--ink-soft); font-size:1.03rem; }
+  .ledger-plate{
+    margin-top:24px; display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:0;
+    border:1px solid var(--card-border); background:var(--card); box-shadow:0 2px 10px var(--shadow);
+  }
+  .ledger-plate div{ padding:12px 16px; border-left:1px solid var(--card-border); }
+  .ledger-plate div:first-child{ border-left:none; }
+  .ledger-plate .k{ display:block; font-family:var(--font-mono); font-size:10.5px; text-transform:uppercase; letter-spacing:.08em; color:var(--ink-soft); margin-bottom:3px; }
+  .ledger-plate .v{ font-size:.96rem; }
+
+  section{ padding:40px 0 6px; }
+  section + section{ border-top:1px solid var(--paper-line); }
+  .eyebrow{ font-family:var(--font-mono); font-size:11px; letter-spacing:.09em; text-transform:uppercase; color:var(--brass); display:flex; align-items:center; gap:8px; }
+  .eyebrow .dot{ width:6px; height:6px; border-radius:50%; background:var(--brass); }
+  section h2{ font-size:clamp(1.3rem,3vw,1.7rem); margin-top:8px; max-width:34ch; }
+  .lede{ color:var(--ink-soft); max-width:66ch; margin-top:10px; font-size:.98rem; }
+
+  /* ---- synoptic tree ---- */
+  .tree, .tree ul{ list-style:none; margin:0; padding-left:26px; }
+  .tree{ padding-left:0; margin-top:26px; }
+  .tree li{ position:relative; padding:9px 0 9px 24px; }
+  .tree ul{ position:relative; }
+  .tree li::before{
+    content:""; position:absolute; top:0; left:0; bottom:0;
+    border-left:2px solid var(--card-border);
+  }
+  .tree li:last-child::before{ bottom:calc(100% - 20px); }
+  .tree li::after{
+    content:""; position:absolute; top:20px; left:0; width:18px;
+    border-top:2px solid var(--card-border);
+  }
+  .tree > li::before, .tree > li::after{ border-color:var(--brass); }
+
+  .node{ display:inline-block; }
+  .node-root{
+    font-family:var(--font-display); font-weight:600; font-size:1.3rem;
+    background:var(--ink); color:var(--paper); padding:10px 20px; border-radius:2px;
+  }
+  .node-branch{
+    font-family:var(--font-mono); font-size:.78rem; letter-spacing:.04em; text-transform:uppercase;
+    color:var(--brass); font-weight:600; display:block; margin-bottom:2px;
+  }
+  .node-title{ font-family:var(--font-body); font-weight:600; font-size:1.02rem; color:var(--ink); }
+  .node-def{ display:block; color:var(--ink-soft); font-size:.88rem; margin-top:2px; max-width:56ch; }
+  .leaf{
+    background:var(--card); border:1px solid var(--card-border); padding:10px 14px;
+  }
+  .leaf.debit{ border-left:3px solid var(--debit); }
+  .leaf.credit{ border-left:3px solid var(--credit); }
+  .leaf.brass{ border-left:3px solid var(--brass); }
+
+  footer{ padding:40px 0 20px; margin-top:16px; border-top:1px solid var(--paper-line); font-size:.85rem; color:var(--ink-soft); }
+  footer .signoff{ display:flex; justify-content:space-between; flex-wrap:wrap; gap:16px; align-items:flex-end; }
+  footer .stamp{
+    font-family:var(--font-mono); border:1px solid var(--brass); color:var(--brass);
+    padding:6px 12px; transform:rotate(-3deg); font-size:.75rem; letter-spacing:.06em;
+  }
+  footer ol{ padding-left:18px; margin:14px 0 0; }
+  footer ol li{ margin-bottom:4px; }
+</style>
+
+<div class="sheet">
+  <header class="hero">
+    <div class="folio-no">Libro Mayor &nbsp;·&nbsp; Folio N.° 002 &nbsp;·&nbsp; Tarea 3</div>
+    <h1>Clasificación de los <em>Estados Financieros</em></h1>
+    <p class="subtitle">Cuadro sinóptico de autoría propia: cómo se agrupan los estados financieros según su propósito, su contenido básico, su alcance y el grupo NIIF al que pertenece la empresa en Colombia.</p>
+    <div class="ledger-plate">
+      <div><span class="k">Curso</span><span class="v mono">212018 · Contabilidad y Costos</span></div>
+      <div><span class="k">Actividad</span><span class="v mono">Tarea 3</span></div>
+      <div><span class="k">Elaborado por</span><span class="v mono">John Brown Nope</span></div>
+      <div><span class="k">Institución</span><span class="v mono">UNAD</span></div>
+    </div>
+  </header>
+
+  <section id="clasificacion">
+    <div class="eyebrow"><span class="dot"></span>Cuadro sinóptico</div>
+    <h2>Cuatro criterios de clasificación</h2>
+    <p class="lede">Los mismos estados financieros pueden agruparse de varias formas según qué pregunta se esté respondiendo: ¿para quién se preparan?, ¿qué muestran?, ¿de cuántas entidades hablan?, o ¿bajo qué norma los prepara la empresa?</p>
+
+    <div class="node node-root" style="margin-bottom:0;">Estados financieros</div>
+    <ul class="tree">
+          <li>
+            <span class="node-branch">1 · Según su propósito</span>
+            <ul>
+              <li><div class="leaf debit"><span class="node-title">De propósito general</span><span class="node-def">Se preparan para usuarios externos no específicos (inversionistas, acreedores, Estado, público en general); son los que exige la norma cada periodo.</span></div></li>
+              <li><div class="leaf credit"><span class="node-title">De propósito especial</span><span class="node-def">Se preparan para un destinatario o uso concreto: estados de liquidación, de fusión, extraordinarios o para fines fiscales.</span></div></li>
+            </ul>
+          </li>
+          <li>
+            <span class="node-branch">2 · Estados financieros básicos</span>
+            <ul>
+              <li><div class="leaf brass"><span class="node-title">Estado de Situación Financiera</span><span class="node-def">(Balance General) Activo, pasivo y patrimonio de la empresa en una fecha de corte.</span></div></li>
+              <li><div class="leaf brass"><span class="node-title">Estado de Resultados Integral</span><span class="node-def">Ingresos, costos y gastos del periodo; muestra la utilidad o pérdida.</span></div></li>
+              <li><div class="leaf brass"><span class="node-title">Estado de Cambios en el Patrimonio</span><span class="node-def">Explica las variaciones del patrimonio entre el inicio y el fin del periodo.</span></div></li>
+              <li><div class="leaf brass"><span class="node-title">Estado de Flujos de Efectivo</span><span class="node-def">Entradas y salidas de efectivo clasificadas en actividades de operación, inversión y financiación.</span></div></li>
+              <li><div class="leaf brass"><span class="node-title">Notas a los Estados Financieros</span><span class="node-def">Políticas contables y revelaciones que complementan y explican las cifras anteriores.</span></div></li>
+            </ul>
+          </li>
+          <li>
+            <span class="node-branch">3 · Según su alcance</span>
+            <ul>
+              <li><div class="leaf debit"><span class="node-title">Individuales</span><span class="node-def">Presentan la información de una sola entidad económica.</span></div></li>
+              <li><div class="leaf credit"><span class="node-title">Consolidados</span><span class="node-def">Reúnen a una matriz y sus subordinadas como si fueran un solo ente económico.</span></div></li>
+              <li><div class="leaf brass"><span class="node-title">Combinados</span><span class="node-def">Agrupan entidades bajo control común que no conforman, formalmente, un grupo empresarial.</span></div></li>
+            </ul>
+          </li>
+          <li>
+            <span class="node-branch">4 · Según el grupo NIIF (Colombia)</span>
+            <ul>
+              <li><div class="leaf debit"><span class="node-title">Grupo 1 — NIIF plenas</span><span class="node-def">Emisores de valores, entidades de interés público y grandes empresas.</span></div></li>
+              <li><div class="leaf credit"><span class="node-title">Grupo 2 — NIIF para Pymes</span><span class="node-def">Medianas y pequeñas empresas que no pertenecen al Grupo 1 ni al Grupo 3.</span></div></li>
+              <li><div class="leaf brass"><span class="node-title">Grupo 3 — Microempresas</span><span class="node-def">Contabilidad simplificada para microempresas, según el Decreto 2420 de 2015 y sus modificaciones.</span></div></li>
+            </ul>
+          </li>
+    </ul>
+  </section>
+
+  <footer>
+    <div class="signoff">
+      <div>
+        <b style="color:var(--ink)">Bibliografía consultada</b>
+        <ol>
+          <li>Rincón, C. A., Lasso, M. G., & Parrado, B. Á. E. (2012). <i>Contabilidad siglo XXI</i> (2.ª ed.). Ecoe Ediciones.</li>
+          <li>Barrera, P. L. M. (2010). <i>Consolidación de estados financieros: texto guía</i>. B - EUMED.</li>
+          <li>Decreto 2420 de 2015 (y modificaciones). Marco Técnico Normativo de Información Financiera, Colombia.</li>
+          <li>IFRS Foundation. <i>NIC 1 — Presentación de Estados Financieros</i>.</li>
+        </ol>
+      </div>
+      <div class="stamp">Autoría propia · John Brown Nope · UNAD 212018</div>
+    </div>
+  </footer>
+</div>
